@@ -1,7 +1,17 @@
 from django.shortcuts import render
 from rest_framework import generics, parsers
-from .models import Item
-from .serializers import ItemSerializer
+from .models import Item, Category
+from .serializers import CategorySerializer, ItemSerializer
+
+
+class CategoryList(generics.ListCreateAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+
+class CategoryDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
 
 
 class ItemList(generics.ListCreateAPIView):
